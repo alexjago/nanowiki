@@ -9,16 +9,21 @@
 syntax "WIKI" "\.wik"
 ## allows e.g. foobar.wik.txt or foobar.wikitext or anything really
 
+
 # include "HTML"
+## commented out because recursive includes are a bad time
 
 header "^\w*=+.*$"
 
 comment "<!--|-->"
+## same as HTML
+
 
 ## Headings
 color bold,yellow "^={1,6}.*"
 
-## Bold/Italic midline
+
+## Bold/Italic
 color bold,normal "(^|[[:space:]])''[^']+''"
 color italic,normal "(^|[[:space:]])'[^']+'"
 color bold,italic,normal "(^|[[:space:]])'''[^']+'''"
@@ -28,16 +33,20 @@ color bold,italic,normal "(^|[[:space:]])'''[^']+'''"
 color blue "^\s*(\*+|#+|:+)"
 color bold,blue "^\;.*$"
 
+
 ## Wiki Links and Includes
 color cyan start="\[\[" end="\]\]"
 color magenta start="\{\{" end="\}\}"
 
+
 ## URLs
 color cyan "https?://[^ )>]+"
+# (add other protocols as needed)
 
-## Tables
+
+## Wiki Tables
 color grey start="\{\|" end="\|\}"
 
-## HTML
 
+## HTML and HTML-like (including tags like <ref>)
 color green "<[^>]+>"
